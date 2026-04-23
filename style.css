@@ -1,37 +1,74 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --number-bg: #ffffff;
+    --number-border: #cccccc;
+    --btn-bg: #efefef;
+    --btn-text: #000000;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --number-bg: #1e1e1e;
+    --number-border: #333333;
+    --btn-bg: #333333;
+    --btn-text: #ffffff;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
 }
 
 .container {
     text-align: center;
+    padding: 20px;
 }
 
 .numbers-container {
     display: flex;
     gap: 10px;
     margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .number {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
-    border: 2px solid #ccc;
+    background-color: var(--number-bg);
+    border: 2px solid var(--number-border);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
-#generate-btn {
+#generate-btn, #theme-toggle {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--number-border);
+    border-radius: 4px;
+    margin: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }

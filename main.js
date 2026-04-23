@@ -1,5 +1,14 @@
 const numbersContainer = document.querySelector('.numbers-container');
 const generateBtn = document.getElementById('generate-btn');
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    themeToggle.textContent = 'Light Mode';
+}
 
 const generateNumbers = () => {
     const numbers = new Set();
@@ -23,4 +32,17 @@ const displayNumbers = (numbers) => {
 generateBtn.addEventListener('click', () => {
     const numbers = generateNumbers();
     displayNumbers(numbers);
+});
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        themeToggle.textContent = 'Light Mode';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeToggle.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'light');
+    }
 });

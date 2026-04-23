@@ -31,6 +31,8 @@ body {
 .container {
     text-align: center;
     padding: 20px;
+    max-width: 800px;
+    width: 100%;
 }
 
 .numbers-container {
@@ -101,6 +103,11 @@ body {
 #submit-btn {
     width: 100%;
     margin: 0;
+}
+
+#disqus_thread {
+    margin-top: 40px;
+    text-align: left;
 }
 
 .theme-switch-wrapper {

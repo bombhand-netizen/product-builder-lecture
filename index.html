@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lottery Number Picker</title>
+    <title>동물상 테스트 (강아지 vs 고양이)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="theme-switch-wrapper">
-        <button id="theme-toggle">Dark Mode</button>
+        <button id="theme-toggle">다크 모드</button>
     </div>
     <div class="container">
-        <h1>Lottery Number Picker</h1>
-        <div class="numbers-container"></div>
-        <button id="generate-btn">Generate Numbers</button>
+        <h1>나의 동물상 테스트</h1>
+        <p class="subtitle">강아지일까, 고양이일까? 사진을 올려보세요!</p>
+        
+        <div class="upload-section">
+            <input type="file" id="image-upload" accept="image/*" hidden>
+            <button id="upload-btn">사진 업로드</button>
+            <div id="image-preview-container">
+                <img id="image-preview" src="#" alt="미리보기" style="display: none;">
+            </div>
+        </div>
+
+        <div id="loading" style="display: none;">
+            <p>분석 중...</p>
+        </div>
+
+        <div id="result-section" style="display: none;">
+            <h2 id="result-message"></h2>
+            <div id="label-container"></div>
+        </div>
 
         <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--number-border);">
 
@@ -34,7 +50,7 @@
 
         <div id="disqus_thread"></div>
         <script>
-            (function() { // DON'T EDIT BELOW THIS LINE
+            (function() {
             var d = document, s = d.createElement('script');
             s.src = 'https://product-builder-6qfhtmxfwr.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
@@ -43,6 +59,10 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
+
+    <!-- Teachable Machine Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

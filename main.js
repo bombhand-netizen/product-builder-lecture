@@ -48,15 +48,25 @@ async function predict() {
     
     prediction.sort((a, b) => b.probability - a.probability);
     
+    // 클래스 이름 한글 매핑
+    const classMapping = {
+        "Dog": "강아지",
+        "Cat": "고양이"
+    };
+    
     const topResult = prediction[0];
-    resultMessage.innerText = `당신은 ${topResult.className}상입니다!`;
+    const koreanClassName = classMapping[topResult.className] || topResult.className;
+    resultMessage.innerText = `당신은 ${koreanClassName}상입니다!`;
 
     labelContainer.innerHTML = '';
     for (let i = 0; i < maxPredictions; i++) {
+        const className = prediction[i].className;
+        const koreanName = classMapping[className] || className;
+        
         const wrapper = document.createElement('div');
         wrapper.className = 'label-wrapper';
         wrapper.innerHTML = `
-            <div style="margin-top: 10px;">${prediction[i].className} (${(prediction[i].probability * 100).toFixed(0)}%)</div>
+            <div style="margin-top: 10px;">${koreanName} (${(prediction[i].probability * 100).toFixed(0)}%)</div>
             <div class="bar-container" style="height: 20px; background: #eee; border-radius: 10px; overflow: hidden; margin-top: 5px;">
                 <div class="bar" style="height: 100%; background: var(--btn-bg); width: ${prediction[i].probability * 100}%"></div>
             </div>

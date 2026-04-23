@@ -1,48 +1,84 @@
-const numbersContainer = document.querySelector('.numbers-container');
-const generateBtn = document.getElementById('generate-btn');
+const URL = "https://teachablemachine.withgoogle.com/models/5vOlsSOB5/";
+
+let model, labelContainer, maxPredictions;
+
+const imageUpload = document.getElementById('image-upload');
+const uploadBtn = document.getElementById('upload-btn');
+const imagePreview = document.getElementById('image-preview');
+const resultSection = document.getElementById('result-section');
+const resultMessage = document.getElementById('result-message');
+const loading = document.getElementById('loading');
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check for saved theme preference
+// Load the image model
+async function init() {
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+    labelContainer = document.getElementById("label-container");
+}
+
+uploadBtn.addEventListener('click', () => imageUpload.click());
+
+imageUpload.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = 'block';
+        
+        loading.style.display = 'block';
+        resultSection.style.display = 'none';
+
+        if (!model) await init();
+        
+        predict();
+    };
+    reader.readAsDataURL(file);
+});
+
+async function predict() {
+    const prediction = await model.predict(imagePreview);
+    loading.style.display = 'none';
+    resultSection.style.display = 'block';
+    
+    prediction.sort((a, b) => b.probability - a.probability);
+    
+    const topResult = prediction[0];
+    resultMessage.innerText = `당신은 ${topResult.className}상입니다!`;
+
+    labelContainer.innerHTML = '';
+    for (let i = 0; i < maxPredictions; i++) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'label-wrapper';
+        wrapper.innerHTML = `
+            <div style="margin-top: 10px;">${prediction[i].className} (${(prediction[i].probability * 100).toFixed(0)}%)</div>
+            <div class="bar-container" style="height: 20px; background: #eee; border-radius: 10px; overflow: hidden; margin-top: 5px;">
+                <div class="bar" style="height: 100%; background: var(--btn-bg); width: ${prediction[i].probability * 100}%"></div>
+            </div>
+        `;
+        labelContainer.appendChild(wrapper);
+    }
+}
+
+// Theme Toggle Logic
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
     body.classList.add('dark-mode');
-    themeToggle.textContent = 'Light Mode';
+    if(themeToggle) themeToggle.textContent = '라이트 모드';
 }
 
-const generateNumbers = () => {
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
-    }
-    return Array.from(numbers).sort((a, b) => a - b);
-};
+if(themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        themeToggle.textContent = isDarkMode ? '라이트 모드' : '다크 모드';
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    });
+}
 
-const displayNumbers = (numbers) => {
-    numbersContainer.innerHTML = '';
-    for (const number of numbers) {
-        const numberEl = document.createElement('div');
-        numberEl.classList.add('number');
-        numberEl.textContent = number;
-        numbersContainer.appendChild(numberEl);
-    }
-};
-
-generateBtn.addEventListener('click', () => {
-    const numbers = generateNumbers();
-    displayNumbers(numbers);
-});
-
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDarkMode = body.classList.contains('dark-mode');
-    
-    if (isDarkMode) {
-        themeToggle.textContent = 'Light Mode';
-        localStorage.setItem('theme', 'dark');
-    } else {
-        themeToggle.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'light');
-    }
-});
+init();

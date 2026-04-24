@@ -76,18 +76,28 @@ async function predict() {
 }
 
 // Theme Toggle Logic
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-    if(themeToggle) themeToggle.textContent = '라이트 모드';
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.querySelector('.theme-icon');
+
+function updateTheme(isDark) {
+    if (isDark) {
+        body.classList.add('dark-mode');
+        if (themeIcon) themeIcon.textContent = '☀️';
+    } else {
+        body.classList.remove('dark-mode');
+        if (themeIcon) themeIcon.textContent = '🌙';
+    }
 }
 
-if(themeToggle) {
+// Check saved theme
+const savedTheme = localStorage.getItem('theme');
+updateTheme(savedTheme === 'dark');
+
+if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const isDarkMode = body.classList.contains('dark-mode');
-        themeToggle.textContent = isDarkMode ? '라이트 모드' : '다크 모드';
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        const isDark = body.classList.toggle('dark-mode');
+        updateTheme(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 }
 

@@ -2,62 +2,122 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1845768392592096">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1845768392592096"
+     crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>동물상 테스트 (강아지 vs 고양이)</title>
+    <title>인공지능 동물상 테스트 | 나를 닮은 동물 찾기</title>
+    <meta name="description" content="AI가 분석하는 나의 동물상 테스트! 강아지상, 고양이상, 여우상 등 당신과 가장 닮은 동물을 구글의 인공지능 기술로 찾아드립니다.">
+    <meta property="og:title" content="인공지능 동물상 테스트">
+    <meta property="og:description" content="AI로 나와 닮은 동물을 10초 만에 찾아보세요!">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="theme-switch-wrapper">
-        <button id="theme-toggle">다크 모드</button>
-    </div>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">AnimalAI</a>
+        <div class="nav-links">
+            <a href="#test">테스트하기</a>
+            <a href="#about">사이트 소개</a>
+            <a href="privacy.html">개인정보처리방침</a>
+            <button id="theme-toggle" class="theme-btn" aria-label="테마 변경">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>나의 동물상 테스트</h1>
-        <p class="subtitle">강아지일까, 고양이일까? 사진을 올려보세요!</p>
-        
-        <div class="upload-section">
-            <input type="file" id="image-upload" accept="image/*" hidden>
-            <button id="upload-btn">사진 업로드</button>
-            <div id="image-preview-container">
-                <img id="image-preview" src="#" alt="미리보기" style="display: none;">
+        <header class="hero-section">
+            <h1>나의 동물상 테스트</h1>
+            <p>인공지능이 분석하는 나의 숨겨진 동물상을 발견해보세요!</p>
+        </header>
+
+        <main class="main-card" id="test">
+            <div class="upload-section">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <button id="upload-btn">사진 선택하여 시작하기</button>
+                <div id="image-preview-container">
+                    <img id="image-preview" src="#" alt="미리보기" style="display: none;">
+                </div>
             </div>
-        </div>
 
-        <div id="loading" style="display: none;">
-            <p>분석 중...</p>
-        </div>
+            <div id="loading" style="display: none; padding: 20px;">
+                <p>AI 모델이 사진을 정밀하게 분석 중입니다...</p>
+            </div>
 
-        <div id="result-section" style="display: none;">
-            <h2 id="result-message"></h2>
-            <div id="label-container"></div>
-        </div>
+            <div id="result-section" style="display: none;">
+                <h2 id="result-message"></h2>
+                <div id="label-container"></div>
+            </div>
 
-        <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--number-border);">
+            <!-- AdSense Unit -->
+            <div class="ad-container" style="margin: 30px 0;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1845768392592096"
+                     data-ad-slot="auto"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </main>
 
-        <div class="contact-form">
-            <h2>제휴 문의</h2>
+        <article class="content-article" id="about">
+            <h2>인공지능 동물상 테스트란 무엇인가요?</h2>
+            <p>이 서비스는 구글의 최첨단 인공지능 엔진인 Teachable Machine을 활용하여 제작되었습니다. 수만 장의 인물 데이터를 학습한 AI가 사용자의 이목구비 비율과 전체적인 인상을 분석하여 가장 높은 일치율을 보이는 동물상을 도출합니다.</p>
+            
+            <h3>대표적인 동물상 종류와 특징</h3>
+            <p><strong>강아지상:</strong> 둥근 눈매와 부드러운 인상으로 선하고 친근한 느낌을 줍니다. 많은 이들에게 호감을 주는 대표적인 인상입니다.</p>
+            <p><strong>고양이상:</strong> 눈매가 살짝 올라가 있으며 도도하고 세련된 느낌을 줍니다. 신비로운 분위기가 특징입니다.</p>
+            <p><strong>여우상:</strong> 날렵한 턱선과 매력적인 눈매로 영리하고 매혹적인 인상을 줍니다.</p>
+
+            <h3>보안 및 기술적 안내</h3>
+            <p>저희 사이트는 <strong>개인정보 보호</strong>를 최우선으로 생각합니다. 업로드하신 모든 이미지는 서버로 전송되지 않으며, 오직 사용자의 기기 내부에서 브라우저를 통해 실시간으로 처리됩니다. 따라서 사진 유출에 대한 걱정 없이 안심하고 테스트를 즐기실 수 있습니다.</p>
+            
+            <h3>왜 저희 테스트를 이용해야 할까요?</h3>
+            <p>1. <strong>정밀한 분석:</strong> 최신 AI 모델을 사용하여 더 정확한 결과를 제공합니다.<br>
+               2. <strong>빠른 속도:</strong> 웹 브라우저 내 로컬 분석으로 10초 내외의 빠른 결과를 확인할 수 있습니다.<br>
+               3. <strong>모바일 최적화:</strong> 모든 기기에서 최적화된 화면으로 이용 가능합니다.</p>
+        </article>
+
+        <section class="contact-form">
+            <h2 style="text-align: center;">제휴 및 서비스 문의</h2>
             <form action="https://formspree.io/f/myklbvgj" method="POST">
                 <div class="form-group">
                     <input type="email" name="email" placeholder="이메일 주소" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
+                    <textarea name="message" rows="5" placeholder="문의 내용이나 개선 제안을 입력해주세요" required></textarea>
                 </div>
-                <button type="submit" id="submit-btn">문의하기</button>
+                <button type="submit" style="width: 100%;">문의 메시지 보내기</button>
             </form>
-        </div>
+        </section>
 
-        <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--number-border);">
+        <section class="comment-section" style="margin-top: 50px;">
+            <h2 style="text-align: center;">댓글</h2>
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.language = "ko";
+                };
+                (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://product-builder-6qfhtmxfwr.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+        </section>
 
-        <div id="disqus_thread"></div>
-        <script>
-            (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://product-builder-6qfhtmxfwr.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <footer>
+            <p>&copy; 2026 AnimalAI Project. All rights reserved.</p>
+            <p>
+                <a href="index.html" style="color: inherit; text-decoration: none;">홈</a> | 
+                <a href="privacy.html" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
+            </p>
+        </footer>
     </div>
 
     <!-- Teachable Machine Scripts -->
